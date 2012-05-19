@@ -4,7 +4,7 @@ body {
 
 .top-text {
 	text-align: center;
-	margin-bottom: 12px;
+	margin-bottom: 24px;
 }
 
 .top-text h1 {
@@ -13,6 +13,8 @@ body {
 
 .center {
 	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 #btn-ask {
@@ -26,4 +28,6 @@ body {
 
 .q textarea {
 	border: thin solid black;
+	width: 250px;
+	resize: none;
 }
