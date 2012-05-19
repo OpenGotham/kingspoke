@@ -1,0 +1,29 @@
+body {
+	padding-top:30px;
+}
+
+.top-text {
+	text-align: center;
+	margin-bottom: 12px;
+}
+
+.top-text h1 {
+	margin-bottom: 12px;
+}
+
+.center {
+	text-align: center;
+}
+
+#btn-ask {
+	margin-top:12px;
+}
+
+.q {
+	display:block; 
+	text-align: center;
+}
+
+.q textarea {
+	border: thin solid black;
+}
