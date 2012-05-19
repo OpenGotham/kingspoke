@@ -1,5 +1,5 @@
 Kingspoke::Application.routes.draw do
-  root :to => 'home#index'
+  root :controller => "homes", :action => "index"
 
   resources :decision, :only => [:create], :defaults => { :format => "json" }
 end
