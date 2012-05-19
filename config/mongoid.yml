@@ -1,0 +1,10 @@
+development: &defaults
+  host: localhost
+  database: kingspoke_development
+
+test:
+  host: localhost
+  database: kingspoke_test
+
+production:
+  <<: *defaults

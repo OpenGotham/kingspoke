@@ -114,6 +114,7 @@ DEPENDENCIES
   bson_ext (~> 1.5)
   coffee-rails (~> 3.2.1)
   jquery-rails
+  mongo
   mongoid (~> 2.4)
   rails (= 3.2.3)
   sass-rails (~> 3.2.3)
