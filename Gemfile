@@ -12,6 +12,7 @@ end
 gem 'twitter'
 gem 'klout'
 gem 'json'
+gem 'twilio-ruby'
 
 gem 'jquery-rails'
 group :development, :test do

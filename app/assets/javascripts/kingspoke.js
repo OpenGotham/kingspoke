@@ -34,19 +34,21 @@ var KS = {
     if (mode == "thinking") {
       $(".section-main").hide();
       $(".section-decision").hide();
+      $(".send-twilio").hide();
       $(".section-thinking").show();
     }
     else if (mode == "decision") {
       $(".section-main").hide();
       $(".section-decision").show();
+      $(".send-twilio").show();
       $(".section-thinking").hide();
     }
     else if (mode == "start") {
       $(".section-main").show();
       $(".section-decision").hide();
       $(".section-thinking").hide();
+      $(".send-twilio").hide();
     }
-
   },
 
   init_ui: function() {
@@ -63,10 +65,11 @@ var KS = {
     });
 
     // ASK click handler
-    $("form").submit(function(e) {
+    $("form#decision-form").submit(function(e) {
 
       var option_1 = $("#option_1").val();
       var option_2 = $("#option_2").val();
+<<<<<<< HEAD
 			
 			if (!option_1.length || !option_2.length) {
 				alert("Make sure you type in two words for the King!");
@@ -78,6 +81,14 @@ var KS = {
 				return false;
 			}
 			
+=======
+      
+      if (option_1 == option_2) {
+        alert("Please choose different words!");
+        return false;
+      }
+      
+>>>>>>> b1fdb1e6e5b81d24410ea1dc1c7a75c5640df825
       var url = $(this).attr("action");
 
       var postdata = {
@@ -98,30 +109,30 @@ var KS = {
         // choose a king
         var num_kings = KS.king_pics.length;
         var king_i = Math.floor(Math.random()*num_kings);
-				var king = KS.king_pics[king_i];
-				
-				// king name & picture
-				$(".section-decision .king-name").text(king.name);
-				$(".section-decision .the-king img").attr("src",king.image);
-				
+        var king = KS.king_pics[king_i];
+        
+        // king name & picture
+        $(".section-decision .king-name").text(king.name);
+        $(".section-decision .the-king img").attr("src",king.image);
+        
         var answer = response['answer'];
         $(".answer").text(answer);
         
         var choices = [];
         
         if (response['sentiments']) {
-        	var sentiments = response['sentiments'];
-        	for (key in sentiments) {
-        		choices.push({name: key, value: sentiments[key]});
-        	}
-        	$(".sentiment-level-text").text("sentiment level");
+          var sentiments = response['sentiments'];
+          for (key in sentiments) {
+            choices.push({name: key, value: sentiments[key]});
+          }
+          $(".sentiment-level-text").text("sentiment level");
         }
         else if (response['klouts']) {
-        	var klouts = response['klouts'];
-        	for (key in klouts) {
-        		choices.push({name: key, value: klouts[key]});
-        	}
-        	$(".sentiment-level-text").text("influence (klout)");
+          var klouts = response['klouts'];
+          for (key in klouts) {
+            choices.push({name: key, value: klouts[key]});
+          }
+          $(".sentiment-level-text").text("influence (klout)");
         }
         
         // populate choices (orange text)
@@ -131,7 +142,7 @@ var KS = {
         }
         var percent_better = 0;
         var people_like_text = "";
-				
+        
         $(".why-info .kings-choice").addClass("unselected").removeClass("selected");
         if (choices.length && answer == choices[0].name) {
           $(".why-info .choice1 span.kings-choice").addClass("selected")
@@ -139,9 +150,15 @@ var KS = {
           percent_better = (((5+choices[0].value) - (5+choices[1].value)) / ((5+choices[0].value) + (5+choices[1].value))) * 100;
           percent_better = Math.round(percent_better*1000)/1000;
           if (response['klouts'])
+<<<<<<< HEAD
 	          people_like_text = choices[0].name + " is " + percent_better + "% more influential.";
 	        else if (response['sentiments'])
 	        	people_like_text = "People like " + choices[0].name + " " + percent_better + "% better.";
+=======
+            people_like_text = choices[0].name + " is " + percent_better + "% more influential.";
+          else
+            people_like_text = "People like " + choices[0].name + " " + percent_better + "% better.";
+>>>>>>> b1fdb1e6e5b81d24410ea1dc1c7a75c5640df825
         }
         else if (choices.length && answer == choices[1].name){
           $(".why-info .choice2 span.kings-choice").addClass("selected")
@@ -149,9 +166,15 @@ var KS = {
           percent_better = (((5+choices[1].value) - (5+choices[0].value)) / ((5+choices[0].value) + (5+choices[1].value))) * 100;
           percent_better = Math.round(percent_better*1000)/1000;
           if (response['klouts'])
+<<<<<<< HEAD
           	people_like_text = choices[1].name + " is " + percent_better + "% more influential."
           else if (response['sentiments'])
           	people_like_text = "People like " + choices[1].name + " " + percent_better + "% better."
+=======
+            people_like_text = choices[1].name + " is " + percent_better + "% more influential."
+          else
+            people_like_text = "People like " + choices[1].name + " " + percent_better + "% better."
+>>>>>>> b1fdb1e6e5b81d24410ea1dc1c7a75c5640df825
         }
         else {
         	people_like_text = "Because I'm the King.";
@@ -165,82 +188,82 @@ var KS = {
         
         if (response['sentiments']) {
 
-	        // change sentiment button 1
-	        if (choices[0].value <= -2.83) {
-	          $sentiment1_button.addClass("superbad");
-	          $sentiment1_button.text("Super bad");
-	        }
-	        else if (choices[0].value <= -1.7) {
-	          $sentiment1_button.addClass("bad");
-	          $sentiment1_button.text("Bad");
-	        }
-	        else if (choices[0].value <= -0.1) {
-	          $sentiment1_button.addClass("not-good");
-	          $sentiment1_button.text("Not good");
-	        }
-	        else if (choices[0].value <= 0.1) {
-	          $sentiment1_button.addClass("neutral");
-	          $sentiment1_button.text("neutral");
-	        }
-	        else if (choices[0].value <= 1.7) {
-	          $sentiment1_button.addClass("notbad");
-	          $sentiment1_button.text("Not bad");
-	        }
-	        else if (choices[0].value <= 2.83) {
-	          $sentiment1_button.addClass("good");
-	          $sentiment1_button.text("Good");
-	        }
-	        else {
-	          $sentiment1_button.addClass("supergood");
-	          $sentiment1_button.text("Super good");
-	        }
-	
-	        // change sentiment button 2
-	        if (choices[1].value <= -2.83) {
-	          $sentiment2_button.addClass("superbad");
-	          $sentiment2_button.text("Super bad");
-	        }
-	        else if (choices[1].value <= -1.7) {
-	          $sentiment2_button.addClass("bad");
-	          $sentiment2_button.text("Bad");
-	        }
-	        else if (choices[1].value <= -0.1) {
-	          $sentiment2_button.addClass("not-good");
-	          $sentiment2_button.text("Not good");
-	        }
-	        else if (choices[1].value <= 0.1) {
-	          $sentiment2_button.addClass("neutral");
-	          $sentiment2_button.text("neutral");
-	        }
-	        else if (choices[1].value <= 1.7) {
-	          $sentiment2_button.addClass("notbad");
-	          $sentiment2_button.text("Not bad");
-	        }
-	        else if (choices[1].value <= 2.83) {
-	          $sentiment2_button.addClass("good");
-	          $sentiment2_button.text("Good");
-	        }
-	        else {
-	          $sentiment2_button.addClass("supergood");
-	          $sentiment2_button.text("Super good");
-	        }
+          // change sentiment button 1
+          if (choices[0].value <= -2.83) {
+            $sentiment1_button.addClass("superbad");
+            $sentiment1_button.text("Super bad");
+          }
+          else if (choices[0].value <= -1.7) {
+            $sentiment1_button.addClass("bad");
+            $sentiment1_button.text("Bad");
+          }
+          else if (choices[0].value <= -0.1) {
+            $sentiment1_button.addClass("not-good");
+            $sentiment1_button.text("Not good");
+          }
+          else if (choices[0].value <= 0.1) {
+            $sentiment1_button.addClass("neutral");
+            $sentiment1_button.text("neutral");
+          }
+          else if (choices[0].value <= 1.7) {
+            $sentiment1_button.addClass("notbad");
+            $sentiment1_button.text("Not bad");
+          }
+          else if (choices[0].value <= 2.83) {
+            $sentiment1_button.addClass("good");
+            $sentiment1_button.text("Good");
+          }
+          else {
+            $sentiment1_button.addClass("supergood");
+            $sentiment1_button.text("Super good");
+          }
+  
+          // change sentiment button 2
+          if (choices[1].value <= -2.83) {
+            $sentiment2_button.addClass("superbad");
+            $sentiment2_button.text("Super bad");
+          }
+          else if (choices[1].value <= -1.7) {
+            $sentiment2_button.addClass("bad");
+            $sentiment2_button.text("Bad");
+          }
+          else if (choices[1].value <= -0.1) {
+            $sentiment2_button.addClass("not-good");
+            $sentiment2_button.text("Not good");
+          }
+          else if (choices[1].value <= 0.1) {
+            $sentiment2_button.addClass("neutral");
+            $sentiment2_button.text("neutral");
+          }
+          else if (choices[1].value <= 1.7) {
+            $sentiment2_button.addClass("notbad");
+            $sentiment2_button.text("Not bad");
+          }
+          else if (choices[1].value <= 2.83) {
+            $sentiment2_button.addClass("good");
+            $sentiment2_button.text("Good");
+          }
+          else {
+            $sentiment2_button.addClass("supergood");
+            $sentiment2_button.text("Super good");
+          }
         }
         else if (response['klouts']) {
-        	$sentiment1_button.text(Math.round(choices[0].value*10)/10);
-        	if (choices[0].value <= 33)
-        		$sentiment1_button.addClass("not-good");
-        	else if (choices[0].value <= 67)
-        		$sentiment1_button.addClass("neutral");
-        	else
-        		$sentiment1_button.addClass("supergood");
-        	
-        	$sentiment2_button.text(Math.round(choices[1].value*10)/10);
-        	if (choices[1].value <= 33)
-        		$sentiment2_button.addClass("not-good");
-        	else if (choices[1].value <= 67)
-        		$sentiment2_button.addClass("neutral");
-        	else
-        		$sentiment2_button.addClass("supergood");
+          $sentiment1_button.text(Math.round(choices[0].value*10)/10);
+          if (choices[0].value <= 33)
+            $sentiment1_button.addClass("not-good");
+          else if (choices[0].value <= 67)
+            $sentiment1_button.addClass("neutral");
+          else
+            $sentiment1_button.addClass("supergood");
+          
+          $sentiment2_button.text(Math.round(choices[1].value*10)/10);
+          if (choices[1].value <= 33)
+            $sentiment2_button.addClass("not-good");
+          else if (choices[1].value <= 67)
+            $sentiment2_button.addClass("neutral");
+          else
+            $sentiment2_button.addClass("supergood");
         }
         else {
         	$(".sentiment-choice").css("visibility","hidden");
