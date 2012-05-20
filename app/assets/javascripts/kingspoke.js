@@ -1,5 +1,24 @@
 var KS = {
-
+	
+	king_pics: [
+		{name: "King Charles I of England", image: "assets/images/kings/1.png"},
+		{name: "King William I the Conquerer", image: "assets/images/kings/2.png"},
+		{name: "King Hamlet the Ghost", image: "assets/images/kings/3.png"},
+		{name: "King Lear", image: "assets/images/kings/4.png"},
+		{name: "Nat King Cole", image: "assets/images/kings/5.png"},
+		{name: "Old King Cole", image: "assets/images/kings/6.png"},
+		{name: "Henry IV of England", image: "assets/images/kings/7.png"},
+		{name: "Henry IV of France", image: "assets/images/kings/8.png"},
+		{name: "Henry I of England", image: "assets/images/kings/9.png"},
+		{name: "Henry VIII of England", image: "assets/images/kings/10.png"},
+		{name: "King Cobra", image: "assets/images/kings/11.png"},
+		{name: "Burger King Guy", image: "assets/images/kings/12.png"},
+		{name: "Burger King Guy", image: "assets/images/kings/12.png"},
+		{name: "Burger King Guy", image: "assets/images/kings/12.png"},
+		{name: "King Harold Bluetooth", image: "assets/images/kings/13.png"},
+		{name: "King Kong", image: "assets/images/kings/14.png"}
+	],
+	
   init: function() {
     log("ready");
 
@@ -62,8 +81,19 @@ var KS = {
       var answer = $(".answer");
 
       KS.api_ask(url, postdata, function(response) {
+        
+        // render "decision" page
         KS.ui_changemode("decision");
-
+        
+        // choose a king
+        var num_kings = KS.king_pics.length;
+        var king_i = Math.floor(Math.random()*num_kings);
+				var king = KS.king_pics[king_i];
+				
+				// king name & picture
+				$(".section-decision .king-name").text(king.name);
+				$(".section-decision .the-king img").attr("src",king.image);
+				
         var answer = response['answer'];
         $(".answer").text(answer);
         
