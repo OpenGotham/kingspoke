@@ -6,7 +6,11 @@ class King
   require 'json'
 
   def self.decide!(option_1, option_2)
-    if ["heads", "tails"].include?(option_1) && ["heads", "tails"].include?(option_2)
+    if options_are_heads_or_tails?(option_1, option_2)
+      random_decision(option_1, option_2)
+    elsif options_differ_by_greater_than?(option_1, option_2, 1)
+      return option_1.to_f > option_2.to_f ? option_1 : option_2
+    elsif options_differ_by_greater_than?(option_1, option_2, 0)
       random_decision(option_1, option_2)
     else
       sentiment_for(option_1) > sentiment_for(option_2) ? option_1 : option_2
@@ -35,5 +39,17 @@ class King
 
   def self.random_decision(option_1, option_2)
     rand(2) == 0 ? option_1 : option_2
+  end
+
+  def self.options_are_heads_or_tails?(option_1, option_2)
+    ["heads", "tails"].include?(option_1) && ["heads", "tails"].include?(option_2)
+  end
+
+  def self.options_differ_by_greater_than?(option_1, option_2, difference_threshold)
+    if option_1.is_numeric? && option_2.is_numeric?
+      (option_1.to_f - option_2.to_f).abs > difference_threshold
+    else
+      false
+    end
   end
 end

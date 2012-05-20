@@ -36,7 +36,7 @@ describe King, ".decide!" do
     it "takes the larger of the inputs when the numbers differ by more than 1" do
       subject.stubs(:random_decision => true, :sentiment_for => true)
 
-      subject.decide!("1", "5").should == 5
+      subject.decide!("1", "5").should == "5"
 
       subject.should have_received(:random_decision).never
       subject.should have_received(:sentiment_for).never
