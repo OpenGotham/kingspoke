@@ -11,14 +11,22 @@ describe King, ".decide!" do
   end
 
   context "when heads or tails queries" do
-    it "returns heads or tails randomly" do
-      subject.stubs(:random => "heads",
-                    :sentiment_for => true)
+    it "doesn't call .sentiment_for" do
+      subject.stubs(:sentiment_for)
 
       subject.decide!("heads", "tails")
 
-      subject.should have_received(:random).with("heads", "tails")
       subject.should have_received(:sentiment_for).never
+    end
+
+    it "returns the result of .random_decision" do
+      subject.stubs(:random_decision => "heads")
+
+      subject.decide!("heads", "tails").should == "heads"
+
+      subject.stubs(:random_decision => "tails")
+
+      subject.decide!("heads", "tails").should == "tails"
     end
   end
 

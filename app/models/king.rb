@@ -7,7 +7,7 @@ class King
 
   def self.decide!(option_1, option_2)
     if ["heads", "tails"].include?(option_1) && ["heads", "tails"].include?(option_2)
-      random(option_1, option_2)
+      random_decision(option_1, option_2)
     else
       sentiment_for(option_1) > sentiment_for(option_2) ? option_1 : option_2
     end
@@ -31,5 +31,9 @@ class King
     response = Net::HTTP.post_form(uri, 'text' => tweet.text)
     hash = JSON.parse(response.body)
     hash["response"]["datalayer"]["sentiment"]
+  end
+
+  def self.random_decision(option_1, option_2)
+    rand(2) == 0 ? option_1 : option_2
   end
 end
