@@ -145,6 +145,13 @@ h1 {
 	display:block;
 	margin-left:200px;
 }
+.ask-again {
+	background: url(images/btn-again.png);
+	width:334px;
+	height:94px;
+	display:block;
+
+}
 .why-info {
 	background:white;
 	display:block;

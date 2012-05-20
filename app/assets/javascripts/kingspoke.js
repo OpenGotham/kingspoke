@@ -64,8 +64,13 @@ var KS = {
       var option_1 = $("#option_1").val();
       var option_2 = $("#option_2").val();
 			
+			if (!option_1.length || !option_2.length) {
+				alert("Make sure you type in two words for the King!");
+				return false;
+			}
+			
 			if (option_1 == option_2) {
-				alert("Please choose different words!");
+				alert("Please choose two different words for the King!");
 				return false;
 			}
 			
@@ -242,6 +247,36 @@ var KS = {
       e.preventDefault();
       return false;
     });
+    
+    $("#twitter-share").click(function(e) {
+
+    	var our_url = encodeURIComponent("http://www.askin.gs");
+    	var share_text = encodeURIComponent("I asked the King: heads or tails, and he answered tails. Ask the King a question of your own!");
+    	var tw_url = "https://twitter.com/share?url=" + our_url + "&text=" + share_text;
+    	KS.popupWindow(tw_url, "Twitter Share");
+    	
+    	
+    });
+    
+    $("#facebook-share").click(function(e) {
+    	var our_url = encodeURIComponent("http://www.askin.gs");
+    	var share_text = encodeURIComponent("I asked the King: heads or tails, and he answered tails. Ask the King a question of your own at http://askin.gs");
+    	var fb_url = "https://www.facebook.com/sharer.php?u=" + our_url + "&t=testing";
+    	KS.popupWindow(fb_url, "Facebook Share");
+    	e.preventDefault();
+    	
+    });
+    
+    $("#gplus-share").click(function(e) {
+    	var our_url = encodeURIComponent("http://www.askin.gs");
+    	var gplus_url = "https://plus.google.com/share?url=" + our_url;
+    	KS.popupWindow(gplus_url, "Google+ Share");
+    	e.preventDefault();
+    });
+  },
+  
+  popupWindow: function(url,title) {
+  	window.open(url, title, "menubar=1,resizable=1,width=450,height=250");
   },
 
   api_ask: function(url, postdata, callback) {
