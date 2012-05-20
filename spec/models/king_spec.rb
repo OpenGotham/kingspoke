@@ -19,19 +19,27 @@ describe King, ".decide!" do
       subject.should have_received(:sentiment_for).never
     end
 
-    it "returns the result of .random_decision" do
-      subject.stubs(:random_decision => "heads")
+    it "calls .random_decision on the inputs" do
+      subject.expects(:random_decision).with("heads", "tails")
 
-      subject.decide!("heads", "tails").should == "heads"
-
-      subject.stubs(:random_decision => "tails")
-
-      subject.decide!("heads", "tails").should == "tails"
+      subject.decide!("heads", "tails")
     end
   end
 
   context "when numbers entered" do
-    it "takes a random guess if the numbered options differ by less than 1"
-    it "takes the larger of the inputs when the numbers differ by more than 1"
+    it "takes a random guess if the numbered options differ by less than 1" do
+      subject.expects(:random_decision).with("1", "1.5")
+
+      subject.decide!("1", "1.5")
+    end
+
+    it "takes the larger of the inputs when the numbers differ by more than 1" do
+      subject.stubs(:random_decision => true, :sentiment_for => true)
+
+      subject.decide!("1", "5").should == 5
+
+      subject.should have_received(:random_decision).never
+      subject.should have_received(:sentiment_for).never
+    end
   end
 end
