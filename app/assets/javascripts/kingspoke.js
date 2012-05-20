@@ -69,7 +69,6 @@ var KS = {
 
       var option_1 = $("#option_1").val();
       var option_2 = $("#option_2").val();
-<<<<<<< HEAD
 			
 			if (!option_1.length || !option_2.length) {
 				alert("Make sure you type in two words for the King!");
@@ -81,14 +80,6 @@ var KS = {
 				return false;
 			}
 			
-=======
-      
-      if (option_1 == option_2) {
-        alert("Please choose different words!");
-        return false;
-      }
-      
->>>>>>> b1fdb1e6e5b81d24410ea1dc1c7a75c5640df825
       var url = $(this).attr("action");
 
       var postdata = {
@@ -150,15 +141,9 @@ var KS = {
           percent_better = (((5+choices[0].value) - (5+choices[1].value)) / ((5+choices[0].value) + (5+choices[1].value))) * 100;
           percent_better = Math.round(percent_better*1000)/1000;
           if (response['klouts'])
-<<<<<<< HEAD
 	          people_like_text = choices[0].name + " is " + percent_better + "% more influential.";
 	        else if (response['sentiments'])
 	        	people_like_text = "People like " + choices[0].name + " " + percent_better + "% better.";
-=======
-            people_like_text = choices[0].name + " is " + percent_better + "% more influential.";
-          else
-            people_like_text = "People like " + choices[0].name + " " + percent_better + "% better.";
->>>>>>> b1fdb1e6e5b81d24410ea1dc1c7a75c5640df825
         }
         else if (choices.length && answer == choices[1].name){
           $(".why-info .choice2 span.kings-choice").addClass("selected")
@@ -166,15 +151,9 @@ var KS = {
           percent_better = (((5+choices[1].value) - (5+choices[0].value)) / ((5+choices[0].value) + (5+choices[1].value))) * 100;
           percent_better = Math.round(percent_better*1000)/1000;
           if (response['klouts'])
-<<<<<<< HEAD
           	people_like_text = choices[1].name + " is " + percent_better + "% more influential."
           else if (response['sentiments'])
           	people_like_text = "People like " + choices[1].name + " " + percent_better + "% better."
-=======
-            people_like_text = choices[1].name + " is " + percent_better + "% more influential."
-          else
-            people_like_text = "People like " + choices[1].name + " " + percent_better + "% better."
->>>>>>> b1fdb1e6e5b81d24410ea1dc1c7a75c5640df825
         }
         else {
         	people_like_text = "Because I'm the King.";
