@@ -7,7 +7,13 @@ describe King, ".decide!" do
     subject.stubs(:sentiment_for).with("option 1").returns(1)
     subject.stubs(:sentiment_for).with("option 2").returns(0)
 
-    subject.decide!("option 1", "option 2").should == "option 1"
+    subject.decide!("option 1", "option 2").should == {
+      :answer     => "option 1",
+      :sentiments => {
+        "option 1" => 1,
+        "option 2" => 0
+      }
+    }
   end
 
   context "when heads or tails queries" do
@@ -36,7 +42,7 @@ describe King, ".decide!" do
     it "takes the larger of the inputs when the numbers differ by more than 1" do
       subject.stubs(:random_decision => true, :sentiment_for => true)
 
-      subject.decide!("1", "5").should == "5"
+      subject.decide!("1", "5").should == { :answer => "5" }
 
       subject.should have_received(:random_decision).never
       subject.should have_received(:sentiment_for).never

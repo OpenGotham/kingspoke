@@ -6,15 +6,24 @@ class King
   require 'json'
 
   def self.decide!(option_1, option_2)
+    result_hash = {}
     if options_are_heads_or_tails?(option_1, option_2)
-      random_decision(option_1, option_2)
+      result_hash[:answer] = random_decision(option_1, option_2)
     elsif options_differ_by_greater_than?(option_1, option_2, 1)
-      return option_1.to_f > option_2.to_f ? option_1 : option_2
+      result_hash[:answer] = option_1.to_f > option_2.to_f ? option_1 : option_2
     elsif options_differ_by_greater_than?(option_1, option_2, 0)
-      random_decision(option_1, option_2)
+      result_hash[:answer] = random_decision(option_1, option_2)
     else
+      option_1_sentiment = sentiment_for(option_1)
+      option_2_sentiment = sentiment_for(option_2)
+      result_hash[:answer] = option_1_sentiment > option_2_sentiment ? option_1 : option_2
+      result_hash[:sentiments] = {
+        "#{option_1}" => option_1_sentiment,
+        "#{option_2}" => option_2_sentiment
+      }
       sentiment_for(option_1) > sentiment_for(option_2) ? option_1 : option_2
     end
+    result_hash
   end
 
   private
