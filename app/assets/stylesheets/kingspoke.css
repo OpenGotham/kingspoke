@@ -47,6 +47,7 @@ h1 {
 }
 
 .section-decision .top-decision {
+	padding-top:40px;
 	margin: 0 auto;
 	width: 791px;
 	height: 94px;
@@ -55,24 +56,15 @@ h1 {
 	background-position: center;
 }
 
-/* .section-decision .the-king.king-kong { */
 .section-decision .the-king {
 	margin: 0 auto;
 	text-align: center;
-/*
-	width: 300px;
-	height: 300px;
-	background-image: url(images/img-kingkong.png);
-	background-repeat: no-repeat;
-	background-position: center;
-*/
 }
 
 .section-decision .the-king img {
 	width:300px;
 	height:300px;
 }
-
 
 .section-decision h4 {
 	text-align: center;
@@ -86,8 +78,6 @@ h1 {
 	text-align: center;
 	margin-top: 12px;
 }
-
-
 
 .input-shading {
 	background: rgba(0,0,0,0.1);
@@ -153,7 +143,7 @@ h1 {
 	width:199px;
 	height:81px;
 	display:block;
-	margin-left:15%;
+	margin-left:200px;
 }
 .why-info {
 	background:white;
@@ -161,12 +151,14 @@ h1 {
 	height:220px;
 	font-size:24px;
 	text-align: center;
+	padding-top:20px;
 }
 
 .why-info .sentiment-level-text {
 	line-height: 120%;
 	color:#0084A2;
 	margin-top:60px;
+	
 }
 
 .why-info .text-vs {

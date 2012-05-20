@@ -15,6 +15,7 @@ var KS = {
 		{name: "Burger King Guy", image: "assets/images/kings/12.png"},
 		{name: "Burger King Guy", image: "assets/images/kings/12.png"},
 		{name: "Burger King Guy", image: "assets/images/kings/12.png"},
+		{name: "Burger King Guy", image: "assets/images/kings/12.png"},
 		{name: "King Harold Bluetooth", image: "assets/images/kings/13.png"},
 		{name: "King Kong", image: "assets/images/kings/14.png"}
 	],
@@ -115,31 +116,36 @@ var KS = {
         }
         
         // populate choices (orange text)
-        $(".why-info .choice1 .choice-text").text(choices[0].name);
-        $(".why-info .choice2 .choice-text").text(choices[1].name);
+        if (choices.length) {
+  	      $(".why-info .choice1 .choice-text").text(choices[0].name);
+	        $(".why-info .choice2 .choice-text").text(choices[1].name);
+        }
         var percent_better = 0;
         var people_like_text = "";
 				
         $(".why-info .kings-choice").addClass("unselected").removeClass("selected");
-        if (answer == choices[0].name) {
+        if (choices.length && answer == choices[0].name) {
           $(".why-info .choice1 span.kings-choice").addClass("selected")
             .removeClass("unselected");
           percent_better = (((5+choices[0].value) - (5+choices[1].value)) / ((5+choices[0].value) + (5+choices[1].value))) * 100;
           percent_better = Math.round(percent_better*1000)/1000;
           if (response['klouts'])
 	          people_like_text = choices[0].name + " is " + percent_better + "% more influential.";
-	        else
+	        else if (response['sentiments'])
 	        	people_like_text = "People like " + choices[0].name + " " + percent_better + "% better.";
         }
-        else {
+        else if (choices.length && answer == choices[1].name){
           $(".why-info .choice2 span.kings-choice").addClass("selected")
             .removeClass("unselected");
           percent_better = (((5+choices[1].value) - (5+choices[0].value)) / ((5+choices[0].value) + (5+choices[1].value))) * 100;
           percent_better = Math.round(percent_better*1000)/1000;
           if (response['klouts'])
           	people_like_text = choices[1].name + " is " + percent_better + "% more influential."
-          else
+          else if (response['sentiments'])
           	people_like_text = "People like " + choices[1].name + " " + percent_better + "% better."
+        }
+        else {
+        	people_like_text = "Because I'm the King.";
         }
 
         // set "people like X 10% better"
@@ -226,6 +232,10 @@ var KS = {
         		$sentiment2_button.addClass("neutral");
         	else
         		$sentiment2_button.addClass("supergood");
+        }
+        else {
+        	$(".sentiment-choice").css("visibility","hidden");
+        	$(".text-vs").css("visibility","hidden");
         }
       });
 
