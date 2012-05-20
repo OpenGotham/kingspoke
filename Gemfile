@@ -25,4 +25,5 @@ group :development, :test do
   gem "shoulda-matchers",   "1.0.0.beta3"
   gem "rspec_tag_matchers", "1.0.0"
   gem "mocha"
+  gem "heroku"
 end
