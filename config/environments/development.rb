@@ -28,4 +28,6 @@ Kingspoke::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+  ENV['KLOUT_API_KEY'] = 'y3fywxc4ctsvpcxs664xegtv'
+  ENV['KLOUT_SECRET'] = 'gmu5e5Dcua'
 end

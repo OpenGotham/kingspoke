@@ -48,4 +48,24 @@ describe King, ".decide!" do
       subject.should have_received(:sentiment_for).never
     end
   end
+
+  context "when twitter handles entered" do
+    it "returns klout scores for each handle" do
+      subject.stubs(:random_decision => true, :sentiment_for => true)
+
+      subject.stubs(:klout_for).with("@mjording").returns(80)
+      subject.stubs(:klout_for).with("@_arjuna").returns(70)
+
+      subject.decide!("@mjording", "@_arjuna").should == {
+        :answer => "@mjording",
+        :klouts => {
+          "@mjording" => 80,
+          "@_arjuna" => 70
+        }
+      }
+
+      subject.should have_received(:random_decision).never
+      subject.should have_received(:sentiment_for).never
+    end
+  end
 end

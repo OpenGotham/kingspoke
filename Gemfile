@@ -10,10 +10,10 @@ group :assets do
 end
 
 gem 'twitter'
+gem 'klout'
 gem 'json'
 
 gem 'jquery-rails'
-
 group :development, :test do
   gem "bourne",             "1.0"
   gem "rspec",              "2.6.0"

@@ -60,5 +60,7 @@ Kingspoke::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+  ENV['KLOUT_API_KEY'] = 'y3fywxc4ctsvpcxs664xegtv'
+  ENV['KLOUT_SECRET'] = 'gmu5e5Dcua'
 
 end
