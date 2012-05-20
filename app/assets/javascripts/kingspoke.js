@@ -21,8 +21,6 @@ var KS = {
 	],
 	
   init: function() {
-    log("ready");
-
     KS.init_ui();
   },
 
