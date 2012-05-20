@@ -1,24 +1,31 @@
 <div class="container">
 
-  <div class="row top-text">
-    <h1>Let the King make a decision for you</h1>
-    <hr/>
-    <h3>What do you want to ask the King? Enter two words or phrases:</h3>
-  </div>
-
-  <div class="row center">
-    <%= form_for :options,
+	<div class="row top-area">
+		<div class="top-banner">
+			<h1>What would you like to ask the King?</h1>
+		</div>
+		
+		<div class="input-form">
+		<%= form_for :options,
           :url => decisions_path,
           :method => "POST",
           :id => "decision-form" do |form| %>
-
-      <%= form.text_field :option_1, id: "option_1" %><span> v/s </span>
-      <%= form.text_field :option_2, id: "option_2" %>
-      <div class="row">
-        <%= form.submit 'Ask the King', class: 'btn btn-info btn-large' %>
+			
+			<div class="input-shading">
+      <%= form.text_field :option_1, id: "option_1", placeholder: "e.g. pizza" %>
+      <span class="white-text">or</span>
+      <%= form.text_field :option_2, id: "option_2", placeholder: "e.g. pasta" %>
+      </div>
+      
+      <div class="row no-bg">
+        <%= form.submit '', class: 'btn btn-info btn-large ask-button' %>
       </div>
     <% end %>
-  </div>
+    </div>
+    
+	</div>
+	
+
 
   <div class="answer">
   </div>
