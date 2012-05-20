@@ -17,9 +17,11 @@ gem "mongoid", "~> 2.4"
 gem "bson_ext", "~> 1.5"
 
 group :development, :test do
-  gem "rspec"
-  gem "rspec-rails"
+  gem "bourne",             "1.0"
+  gem "rspec",              "2.6.0"
+  gem "rspec-rails",        "2.6.1"
   gem "ruby-debug19"
-  gem "mocha"
-  gem "shoulda"
+  gem "shoulda",            "2.11.3"
+  gem "shoulda-matchers",   "1.0.0.beta3"
+  gem "rspec_tag_matchers", "1.0.0"
 end

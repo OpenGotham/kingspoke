@@ -6,7 +6,11 @@ class King
   require 'json'
 
   def self.decide!(option_1, option_2)
-    sentiment_for(option_1) > sentiment_for(option_2) ? option_1 : option_2
+    if ["heads", "tails"].include?(option_1) && ["heads", "tails"].include?(option_2)
+      random(option_1, option_2)
+    else
+      sentiment_for(option_1) > sentiment_for(option_2) ? option_1 : option_2
+    end
   end
 
   private
