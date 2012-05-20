@@ -131,6 +131,14 @@ h1 {
 	line-height:100%; 
 }
 
+.social-share {
+position: absolute;
+right: 0;
+top: 320px;
+color: #CCC;
+font-size: 18px;
+}
+
 
 
 .why-section {
@@ -138,18 +146,21 @@ h1 {
 	bottom:0;
 
 }
-.why-button {
-	background: url(images/btn-why.png);
-	width:199px;
-	height:81px;
+
+.why-div {
+	height:91px;
 	display:block;
 	margin-left:200px;
+	width:900px;
+	position: relative;
+	bottom:-2px;
+}
+
+.why-button {
+	background: url(images/btn-why.png);
 }
 .ask-again {
 	background: url(images/btn-again.png);
-	width:334px;
-	height:94px;
-	display:block;
 
 }
 .why-info {

@@ -57,6 +57,10 @@ var KS = {
       $(".why-info").slideToggle();
       e.preventDefault();
     });
+    
+    $(".btn-ask-again").click(function(e) {
+    	document.location = "/";
+    });
 
     // ASK click handler
     $("form").submit(function(e) {
@@ -252,7 +256,7 @@ var KS = {
 
     	var our_url = encodeURIComponent("http://www.askin.gs");
     	var share_text = encodeURIComponent("I asked the King: heads or tails, and he answered tails. Ask the King a question of your own!");
-    	var tw_url = "https://twitter.com/share?url=" + our_url + "&text=" + share_text;
+    	var tw_url = "https://twitter.com/share?url=" + our_url + "&text=" + share_text + "&hashtags=GoAskTheKing";
     	KS.popupWindow(tw_url, "Twitter Share");
     	
     	
