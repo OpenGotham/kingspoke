@@ -20,8 +20,9 @@ group :development, :test do
   gem "bourne",             "1.0"
   gem "rspec",              "2.6.0"
   gem "rspec-rails",        "2.6.1"
-  gem "ruby-debug19"
+  gem "debugger"
   gem "shoulda",            "2.11.3"
   gem "shoulda-matchers",   "1.0.0.beta3"
   gem "rspec_tag_matchers", "1.0.0"
+  gem "mocha"
 end

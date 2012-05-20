@@ -22,6 +22,18 @@ describe King, ".decide!" do
     end
   end
 
+  context "recognizes input types" do
+    it "input is heads/tails" do
+      option_1 = "heads"
+      option_2 = "tails"
+
+      subject.expects(:random).with(option_1, option_2)
+      subject.decide!(option_1, option_2)
+    end
+  end
+
+  context "when heads or tails queries"
+
   context "when numbers entered" do
     it "takes a random guess if the numbered options differ by less than 1"
     it "takes the larger of the inputs when the numbers differ by more than 1"
