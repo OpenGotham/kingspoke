@@ -15,3 +15,11 @@ gem 'jquery-rails'
 gem "mongo"
 gem "mongoid", "~> 2.4"
 gem "bson_ext", "~> 1.5"
+
+group :development, :test do
+  gem "rspec"
+  gem "rspec-rails"
+  gem "ruby-debug19"
+  gem "mocha"
+  gem "shoulda"
+end
