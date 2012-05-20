@@ -1,8 +1,8 @@
-
-
 body {
-
 	background-color: #34586c;
+	background-image: url(images/top-bg.png);
+	background-repeat: repeat-x;
+	font-family: 'Ultra', serif;
 }
 
 .container {
@@ -14,7 +14,7 @@ h1 {
 	color: #D3A78F;
 	text-align: center;
 	margin: 0 60px;
-	padding-top:32px;
+	padding-top:30px;
 	text-shadow: #000 1px 1px;
 	
 	font-size:42px;
@@ -22,19 +22,52 @@ h1 {
 	font-weight: normal;
 }
 
-.top-area {
-	background-image: url(images/top-bg.png);
-	background-repeat: repeat-x;
+.section-main {
 }
 
-.top-area .top-banner {
+.section-main .top-banner {
 	margin: 0 auto;
 	width: 680px;
 	height: 277px;
+	
 	background-image: url(images/top-banner.png);
 	background-repeat: no-repeat;
 	background-position: center;
+
 	
+}
+
+.section-thinking {
+
+}
+
+.section-decision {
+}
+
+.section-decision .top-decision {
+	margin: 0 auto;
+	width: 791px;
+	height: 94px;
+	background-image: url(images/label-spoken.png);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.section-decision .the-king.king-kong {
+	margin: 0 auto;
+	width: 300px;
+	height: 300px;
+	background-image: url(images/img-kingkong.png);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.section-decision h4 {
+	text-align: center;
+	color: white;
+	font-size: 24px;
+	font-family: 'Ultra', serif;
+	padding-top:12px;
 }
 
 .input-form {
@@ -46,7 +79,8 @@ h1 {
 
 .input-shading {
 	background: rgba(0,0,0,0.1);
-	padding: 20px 0;
+	padding: 50px 0;
+	height: 70px;
 }
 
 .ask-button {
@@ -72,6 +106,27 @@ h1 {
 	padding:0 16px;
 }
 
+.answer { text-decoration: underline; }
+
+.arrow-up {
+	width: 0;
+	height: 0;
+	border-left: 16px solid transparent;
+	border-right: 16px solid transparent;
+	border-bottom: 10px solid #274454;
+	margin: 20px auto -20px auto;
+}
+.speech-bubble {
+	background: rgba(0,0,0,0.2);
+	text-align: center;
+	margin: 0 auto;
+	width: 600px;
+	padding: 50px 20px;
+	border-radius: 10px;
+	margin-top: 20px;
+	font-size: 42px;
+	color:white;
+}
 
 form input {
 	background:transparent;

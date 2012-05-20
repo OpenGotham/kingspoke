@@ -5,7 +5,30 @@ var KS = {
 
     KS.init_ui();
   },
-
+	
+	ui_changemode: function(mode) {
+		
+		if (!mode)
+			return;
+			
+		if (mode == "thinking") {
+			$(".section-main").hide();
+			$(".section-decision").hide();
+			$(".section-thinking").show();
+		}
+		else if (mode == "decision") {
+			$(".section-main").hide();
+			$(".section-decision").show();
+			$(".section-thinking").hide();
+		}
+		else if (mode == "start") {
+			$(".section-main").show();
+			$(".section-decision").hide();
+			$(".section-thinking").hide();
+		}
+		
+	},
+	
   init_ui: function() {
     // focus q1
     $("#option_1").focus();
@@ -23,11 +46,16 @@ var KS = {
         option_1: option_1,
         option_2: option_2
       };
-
-      var answer = $(".answer")
-      $(".answer").text("Silence! The King is thinking.")
+			
+			KS.ui_changemode("thinking");
+			
+      var answer = $(".answer");
+      
+      /* $(".answer").text("Silence! The King is thinking."); */
+      
       KS.api_ask(url, postdata, function(response) {
-        $(".answer").text("The King has decided: " + response['answer']);
+      	KS.ui_changemode("decision");
+        $(".answer").text(response['answer']);
       });
 
       e.preventDefault();
