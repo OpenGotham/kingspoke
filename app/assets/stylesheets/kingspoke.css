@@ -41,6 +41,8 @@ h1 {
 
 }
 
+.section-thinking img { margin:0 auto; display:block; }
+
 .section-decision {
 }
 
@@ -154,6 +156,7 @@ h1 {
 .why-info .sentiment-level-text {
 	line-height: 120%;
 	color:#0084A2;
+	margin-top:60px;
 }
 
 .why-info .text-vs {
