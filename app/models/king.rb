@@ -31,7 +31,7 @@ class King
   def self.sentiment_for(option)
     count = 0
     aggregate_score = 0
-    Twitter.search("#{option}", :rpp => 10, :result_type => "recent").map do |status|
+    Twitter.search("#{option}", :rpp => 20, :result_type => "recent").map do |status|
       aggregate_score += score_for_tweet(status)
       count += 1
     end
