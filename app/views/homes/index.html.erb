@@ -1,82 +1,84 @@
 <div class="container">
-
-	<div class="row section-main" style="">
-		<div class="top-banner">
-			<!-- <h1>What would you like to ask the King?</h1> -->
-			<h1>Can't make your decision? <br/>Ask the King.</h1>
-		</div>
-		
-		<div class="input-form">
-		<%= form_for :options,
-          :url => decisions_path,
-          :method => "POST",
-          :id => "decision-form" do |form| %>
-			
-			<div class="input-shading">
-      <%= form.text_field :option_1, id: "option_1", placeholder: "e.g. pizza" %>
-      <span class="white-text">or</span>
-      <%= form.text_field :option_2, id: "option_2", placeholder: "e.g. pasta" %>
-      </div>
-      
-      <div class="row no-bg">
-        <%= form.submit '', class: 'btn btn-info btn-large ask-button' %>
-      </div>
-    <% end %>
+  <div class="row section-main" style="">
+    <div class="top-banner">
+      <h1>Can't make your decision? <br/>Ask the King.</h1>
     </div>
-    
-	</div>
-	
-	<div class="row section-thinking" style="display:none;">
-		<h1>Silence! The King is thinking!</h1>
-		<%= image_tag "images/load.gif" %>
-	</div>
-	
-	<div class="row section-decision" style="display:none;">
-		<div class="top-decision">
-		</div>
-		<div class="the-king">
-			<img />
-		</div>
-		<h4><span class="king-name"></span> says…</h4>
-		
-		<div class="arrow-up"></div>
-		<div class="speech-bubble">
-			Go with <span class="answer"></span>
-		</div>
-		
-		
-		
-		<div class="why-section">
-			<a href="#" class="why-button"></a>
-			<div class="why-info" style="display:none;">
 
-				<div class="span3 sentiment-level-text"></div>
-				
-				<div class="span3 sentiment-choice choice1">
-					<div class="choice-text"></div>
-					<div class="kings-choice"></div>
-					<div class="sentiment-button"></div>
-				</div>
-				
-				<div class="span2 text-vs">vs.</div>
-				
-				<div class="span3 sentiment-choice choice2">
-					<div class="choice-text"></div>
-					<div class="kings-choice"></div>
-					<div class="sentiment-button"></div>
-				</div>
-				
-				<div class="span12 bottom-text">
-					People like pizza 0.005% better.
-				</div>
-				
-			</div>
-		</div>
-		
-	</div>
-	
+    <div class="input-form">
+      <%= form_for :options,
+            :url => decisions_path,
+            :method => "POST",
+            :html => { :id => "decision-form" } do |form| %>
+        <div class="input-shading">
+          <%= form.text_field :option_1, id: "option_1", placeholder: "e.g. pizza" %>
+          <span class="white-text">or</span>
+          <%= form.text_field :option_2, id: "option_2", placeholder: "e.g. pasta" %>
+        </div>
 
+        <div class="row no-bg">
+          <%= form.submit '', class: 'btn btn-info btn-large ask-button' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 
-  
+  <div class="row section-thinking" style="display:none;">
+    <h1>Silence! The King is thinking!</h1>
+    <%= image_tag "images/load.gif" %>
+  </div>
 
+  <div class="row section-decision" style="display:none;">
+    <div class="top-decision">
+    </div>
+    <div class="the-king">
+      <img />
+    </div>
+    <h4><span class="king-name"></span> says…</h4>
+
+    <div class="arrow-up"></div>
+    <div class="speech-bubble">
+      Go with <span class="answer"></span>
+    </div>
+
+    <div class="send-twilio">
+      <input type="button" value="Twilio This Response" id="show-twilio-form-button"/>
+    </div>
+    <div class="twilio-form-container" style="display: none;">
+      <%= form_for :twilio,
+                   :url => twilios_path,
+                   :method => "POST",
+                   :html => { :id => "twilio-form" } do |form| %>
+        <%= form.text_field :phone_number %>
+        <%= form.label "Enter Phone Number" %>
+
+        <%= form.submit "Send Now" %>
+        <%= form.button "Cancel", :id => "cancel-button" %>
+      <% end %>
+    </div>
+
+    <div class="why-section">
+      <a href="#" class="why-button"></a>
+      <div class="why-info" style="display:none;">
+        <div class="span3 sentiment-level-text"></div>
+
+        <div class="span3 sentiment-choice choice1">
+          <div class="choice-text"></div>
+          <div class="kings-choice"></div>
+          <div class="sentiment-button"></div>
+        </div>
+
+        <div class="span2 text-vs">vs.</div>
+
+        <div class="span3 sentiment-choice choice2">
+          <div class="choice-text"></div>
+          <div class="kings-choice"></div>
+          <div class="sentiment-button"></div>
+        </div>
+
+        <div class="span12 bottom-text">
+          People like pizza 0.005% better.
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
