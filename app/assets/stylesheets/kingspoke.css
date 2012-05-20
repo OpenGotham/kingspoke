@@ -126,6 +126,7 @@ h1 {
 	margin-top: 20px;
 	font-size: 42px;
 	color:white;
+	line-height:100%; 
 }
 
 
@@ -133,16 +134,51 @@ h1 {
 .why-section {
 	position:absolute;
 	bottom:0;
-	left:20%;
+
 }
 .why-button {
 	background: url(images/btn-why.png);
 	width:199px;
 	height:81px;
 	display:block;
+	margin-left:15%;
 }
 .why-info {
 	background:white;
+	display:block;
+	height:100px;
+	font-size:24px;
+	text-align: center;
+}
+
+.why-info .sentiment-level-text {
+	line-height: 120%;
+	color:#0084A2;
+}
+
+.why-info .text-vs {
+	color:#7d7d7d;
+}
+
+.why-info .bottom-text {
+	color:#5D5D5D;
+}
+
+.why-info .sentiment-choice {
+	color:#FF9800;
+	line-height: 120%;
+}
+
+.why-info .kings-choice {
+	display:block;
+	width:278px;
+	height:42px;
+}
+.why-info .kings-choice.unselected {
+	background: url(images/line-selected.png);
+}
+.why-info .kings-choice.selected {
+	background: url(images/line-unselected.png);
 }
 
 form input {

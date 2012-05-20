@@ -61,7 +61,8 @@ var KS = {
       KS.api_ask(url, postdata, function(response) {
       	KS.ui_changemode("decision");
         
-        $(".answer").text(response['answer']);
+        var answer = response['answer'];
+        $(".answer").text(answer);
         
         var sentiments = response['sentiments'];
         var i=0;
@@ -79,8 +80,15 @@ var KS = {
         	i++;
         }
         
-        $(".why-info .choice1").text(sentiment1_name);
-        $(".why-info .choice2").text(sentiment2_name);
+        $(".why-info .choice1 .choice-text").text(sentiment1_name);
+        $(".why-info .choice2 .choice-text").text(sentiment2_name);
+        $(".why-info .kings-choice").addClass("unselected").removeClass("selected");
+				if (answer == sentiment1_name) {
+					$(".why-info .choice1 span.kings-choice").addClass("selected").removeClass("unselected");
+				}
+				else {
+					$(".why-info .choice2 span.kings-choice").addClass("selected").removeClass("unselected");
+				}
       });
 
       e.preventDefault();
