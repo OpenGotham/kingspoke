@@ -24,9 +24,8 @@ class King
 
   def self.score_for_tweet(tweet)
     uri = URI("http://api.metalayer.com/s/datalayer/1/sentiment")
-    res = Net::HTTP.post_form(uri, 'text' => tweet.text)
-    hash = JSON.parse(res.body)
-    # puts "#{hash["response"]["datalayer"]["sentiment"]} - #{tweet.text}"
+    response = Net::HTTP.post_form(uri, 'text' => tweet.text)
+    hash = JSON.parse(response.body)
     hash["response"]["datalayer"]["sentiment"]
   end
 end

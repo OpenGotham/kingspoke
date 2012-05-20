@@ -13,20 +13,21 @@ var KS = {
     // ASK click handler
     $("form").submit(function(e) {
 
-      var q1 = $("#option_1").val();
-      var q2 = $("#option_2").val();
+      var option_1 = $("#option_1").val();
+      var option_2 = $("#option_2").val();
 
       var url = $(this).attr("action");
 
       var postdata = {
         method: "",
-        option_1: q1,
-        option_2: q2
+        option_1: option_1,
+        option_2: option_2
       };
 
+      var answer = $(".answer")
+      $(".answer").text("Silence! The King is thinking.")
       KS.api_ask(url, postdata, function(response) {
-        $(".answer").empty();
-        $(".answer").text(response['answer']);
+        $(".answer").text("The King has decided: " + response['answer']);
       });
 
       e.preventDefault();
