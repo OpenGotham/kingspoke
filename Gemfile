@@ -12,9 +12,6 @@ gem 'twitter'
 gem 'json'
 
 gem 'jquery-rails'
-gem "mongo"
-gem "mongoid", "~> 2.4"
-gem "bson_ext", "~> 1.5"
 
 group :development, :test do
   gem "bourne",             "1.0"
