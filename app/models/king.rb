@@ -6,7 +6,24 @@ class King
   require 'json'
 
   def self.decide!(option_1, option_2)
-    sentiment_for(option_1) > sentiment_for(option_2) ? option_1 : option_2
+    result_hash = {}
+    if options_are_heads_or_tails?(option_1, option_2)
+      result_hash[:answer] = random_decision(option_1, option_2)
+    elsif options_differ_by_greater_than?(option_1, option_2, 1)
+      result_hash[:answer] = option_1.to_f > option_2.to_f ? option_1 : option_2
+    elsif options_differ_by_greater_than?(option_1, option_2, 0)
+      result_hash[:answer] = random_decision(option_1, option_2)
+    else
+      option_1_sentiment = sentiment_for(option_1)
+      option_2_sentiment = sentiment_for(option_2)
+      result_hash[:answer] = option_1_sentiment > option_2_sentiment ? option_1 : option_2
+      result_hash[:sentiments] = {
+        "#{option_1}" => option_1_sentiment,
+        "#{option_2}" => option_2_sentiment
+      }
+      sentiment_for(option_1) > sentiment_for(option_2) ? option_1 : option_2
+    end
+    result_hash
   end
 
   private
@@ -27,5 +44,21 @@ class King
     response = Net::HTTP.post_form(uri, 'text' => tweet.text)
     hash = JSON.parse(response.body)
     hash["response"]["datalayer"]["sentiment"]
+  end
+
+  def self.random_decision(option_1, option_2)
+    rand(2) == 0 ? option_1 : option_2
+  end
+
+  def self.options_are_heads_or_tails?(option_1, option_2)
+    ["heads", "tails"].include?(option_1) && ["heads", "tails"].include?(option_2)
+  end
+
+  def self.options_differ_by_greater_than?(option_1, option_2, difference_threshold)
+    if option_1.is_numeric? && option_2.is_numeric?
+      (option_1.to_f - option_2.to_f).abs > difference_threshold
+    else
+      false
+    end
   end
 end
